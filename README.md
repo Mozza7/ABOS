@@ -18,7 +18,7 @@ database_loc = Please enter where the database is stored
 
 multicore_on = This is to choose whether or not you would like to use multicore processing. A task will be run on each core; 4 cores = 4 backups at once
 
-cores = Set the number of cores you would like (dependandt on multicore_on)
+cores = Set the number of cores you would like (dependant on multicore_on)
 
 nas = Whether you are using a network file share (this checks whether the drive is connected, and waits until is)
 
