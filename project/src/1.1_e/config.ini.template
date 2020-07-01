@@ -1,0 +1,23 @@
+[options]
+backup_location = C:\Users\username\Desktop\ABOSBackups
+database_loc_on = 1
+database_loc = C:\Users\username\Documents\databases\aboscust.db
+multicore_on = 0
+cores = 0
+nas = 1
+nas_location = X:\share\location
+onedrive = 1
+
+[selenium]
+headless = 1
+
+[email]
+email_on = 1
+from = unused@domain.co.uk
+to = user@domain.co.uk
+
+[email_server]
+smtp_server_addr = smtp.office365.com
+smtp_server_port = 587
+tls = 1
+smtp_pword = p@5sW0rD

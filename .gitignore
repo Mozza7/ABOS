@@ -1,0 +1,8 @@
+features.txt
+project/src/1.1_e/__pycache__
+project/requirements
+project/ui
+project/src/1.1_e/Downloads/*
+project/src/1.1_e/geckodriver.log
+project/src/1.1_e/*.log
+project/src/1.1_e/config.ini
