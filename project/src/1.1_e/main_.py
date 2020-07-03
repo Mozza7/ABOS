@@ -31,7 +31,7 @@ def webdriver_create(dldir):
     options = Options()
     headless_active = config.get('selenium', 'headless')
     if headless_active == '1':
-       options.headless = False
+       options.headless = True
     driver = webdriver.Firefox(firefox_profile=fp, options=options)
     return driver
 
