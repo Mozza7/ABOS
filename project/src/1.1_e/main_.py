@@ -368,47 +368,6 @@ def cleanup_start():
     os.chdir(root_location)
 
 
-def email_report():
-    latestlog_loc = logdir + '/info-latest.log'
-    fromaddress = config.get('email', 'from')
-    toaddress = config.get('email', 'to')
-    smtp_server_addr = config.get('email_server', 'smtp_server_addr')
-    smtp_server_port = config.get('email_server', 'smtp_server_port')
-    tls_t = config.get('email_server', 'tls')
-    if tls_t == '1':
-        tls = True
-    else:
-        tls = False
-    smtp_pword = config.get('email_server', 'smtp_pword')
-
-    import smtplib
-    from email.mime.multipart import MIMEMultipart
-    from email.mime.text import MIMEText
-    from email.mime.base import MIMEBase
-    from email import encoders
-    msg = MIMEMultipart()
-    msg['From'] = fromaddress
-    msg['To'] = toaddress
-    msg['Subject'] = 'Auto-backup OpenScape'
-    logged = open(latestlog_loc)
-    bodymsg = logged.read()
-    msg.attach(MIMEText(bodymsg, 'plain'))
-    attachment = open(latestlog_loc, "rb")
-    p = MIMEBase('application', 'octet-stream')
-    p.set_payload((attachment).read())
-    encoders.encode_base64(p)
-    p.add_header('Content-Disposition', "attachment; filename=latestlog.txt")
-    msg.attach(p)
-    s = smtplib.SMTP(smtp_server_addr, smtp_server_port)
-    if tls is True:
-        s.starttls()
-    s.login(fromaddress, smtp_pword)
-    text = msg.as_string()
-    s.sendmail(fromaddress, toaddress, text)
-    s.quit()
-    print('Email report sent')
-
-
 def onedrive_run_check():
     import psutil
     for p in psutil.process_iter(attrs=['pid', 'name']):
@@ -463,8 +422,6 @@ if __name__=='__main__':
         db_id = 0
         dldir = 'Downloads'
         run_all(db_id)
-    if config.get('email', 'email_on') == '1':
-        email_report()
     if config.get('options', 'onedrive') == '1':
         onedrive_run_check()
     cleanup_start()
